@@ -3,30 +3,532 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Adaba Studio</title>
+  <title>Adaba Studio — From idea to App Store in weeks</title>
+  <meta name="description" content="iOS MVPs and product advisory for founders and small teams. Built by operators from BeReal, Lydia and papernest. From idea to App Store in weeks.">
+  <meta property="og:title" content="Adaba Studio — From idea to App Store in weeks">
+  <meta property="og:description" content="iOS MVPs and product advisory for founders and small teams. You work directly with the people who ship.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23000'/%3E%3Ctext x='32' y='44' font-family='-apple-system,Helvetica,Arial' font-size='34' font-weight='700' fill='%23fff' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;650&display=swap" rel="stylesheet">
   <style>
-    html, body {
-      height: 100%;
-      margin: 0;
+    :root {
+      --bg: #050505;
+      --fg: #f5f5f5;
+      --muted: #8a8a8a;
+      --faint: #5c5c5c;
+      --line: rgba(255, 255, 255, 0.08);
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
     }
+    * { box-sizing: border-box; margin: 0; }
+    html { scroll-behavior: smooth; }
     body {
-      background: #000;
-      color: #fff;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      font-size: 17px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+    }
+    ::selection { background: #fff; color: #000; }
+    a { color: inherit; }
+    a:focus-visible, button:focus-visible {
+      outline: 1.5px solid var(--fg);
+      outline-offset: 4px;
+      border-radius: 2px;
+    }
+
+    .wrap {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    /* ---------- Header ---------- */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 10;
+      padding: 22px 0;
+      background: linear-gradient(to bottom, rgba(5,5,5,0.85), rgba(5,5,5,0));
+      -webkit-backdrop-filter: blur(2px);
+      backdrop-filter: blur(2px);
+    }
+    header .wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .mark {
+      font-size: 15px;
+      font-weight: 650;
+      letter-spacing: -0.01em;
+      text-decoration: none;
+    }
+    .nav-cta {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 8px 18px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      transition: color 0.25s var(--ease), border-color 0.25s var(--ease);
+    }
+    .nav-cta:hover { color: var(--fg); border-color: rgba(255,255,255,0.35); }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      position: relative;
+      min-height: 92vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 140px 0 80px;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 55% at 50% -10%, rgba(255,255,255,0.07), transparent 65%);
+      pointer-events: none;
+    }
+    .eyebrow {
+      font-size: 12px;
+      font-weight: 550;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--faint);
+      margin-bottom: 32px;
+    }
+    h1 {
+      font-size: clamp(46px, 8.5vw, 88px);
+      font-weight: 650;
+      letter-spacing: -0.045em;
+      line-height: 1.03;
+      max-width: 11em;
+      text-wrap: balance;
+    }
+    .hero-sub {
+      margin-top: 28px;
+      font-size: clamp(17px, 2.2vw, 20px);
+      line-height: 1.65;
+      color: var(--muted);
+      max-width: 27em;
+      text-wrap: balance;
+    }
+    .hero-actions { margin-top: 44px; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--fg);
+      color: #000;
+      font-size: 16px;
+      font-weight: 550;
+      text-decoration: none;
+      padding: 17px 34px;
+      border-radius: 999px;
+      transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
+    }
+    .btn .arrow { transition: transform 0.35s var(--ease); }
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 40px rgba(255,255,255,0.15);
+    }
+    .btn:hover .arrow { transform: translateX(4px); }
+    .btn-note {
+      display: block;
+      margin-top: 18px;
+      font-size: 13.5px;
+      color: var(--faint);
+    }
+
+    /* Load-in animation */
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .rise { animation: rise 1s var(--ease) both; }
+    .d1 { animation-delay: 0.05s; }
+    .d2 { animation-delay: 0.15s; }
+    .d3 { animation-delay: 0.28s; }
+    .d4 { animation-delay: 0.4s; }
+
+    /* Scroll reveal (hidden state only applies once JS is confirmed running) */
+    html.js .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+    }
+    html.js .reveal.in { opacity: 1; transform: none; }
+
+    /* ---------- Logo strip ---------- */
+    .logos {
+      padding: 20px 0 110px;
+      text-align: center;
+    }
+    .logos .label { margin-bottom: 36px; }
+    .logo-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: center;
+      column-gap: clamp(32px, 5vw, 60px);
+      row-gap: 22px;
+      list-style: none;
+      padding: 0;
+    }
+    .logo-row li {
+      color: var(--fg);
+      opacity: 0.42;
+      white-space: nowrap;
+      transition: opacity 0.3s var(--ease);
+      cursor: default;
+    }
+    .logo-row li:hover { opacity: 0.9; }
+    .lg-bereal    { font-size: 21px; font-weight: 650; letter-spacing: -0.03em; }
+    .lg-lydia     { font-size: 21px; font-weight: 600; letter-spacing: -0.01em; }
+    .lg-papernest { font-size: 20px; font-weight: 500; letter-spacing: -0.02em; }
+    .lg-deloitte  { font-size: 20px; font-weight: 650; letter-spacing: -0.02em; }
+    .lg-alstom    { font-size: 17px; font-weight: 650; letter-spacing: 0.2em; }
+
+    /* ---------- Sections ---------- */
+    section { padding: 110px 0; }
+    .hairline { border-top: 1px solid var(--line); }
+    .label {
+      display: block;
+      font-size: 12px;
+      font-weight: 550;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--faint);
+      text-align: center;
+    }
+
+    /* Services — two cards */
+    .services .label { margin-bottom: 56px; }
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      max-width: 880px;
+      margin: 0 auto;
+    }
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.015);
+      padding: 44px 40px 48px;
+      text-align: left;
+      transition: border-color 0.35s var(--ease), background 0.35s var(--ease), transform 0.35s var(--ease);
+    }
+    .card:hover {
+      border-color: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.03);
+      transform: translateY(-3px);
+    }
+    .card .num {
+      display: block;
+      font-size: 12px;
+      color: var(--faint);
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0.12em;
+      margin-bottom: 22px;
+    }
+    .card h2 {
+      font-size: clamp(22px, 2.8vw, 27px);
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      line-height: 1.2;
+      margin-bottom: 14px;
+    }
+    .card p {
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.65;
+    }
+
+    /* Statement */
+    .statement { text-align: center; }
+    .statement p {
+      font-size: clamp(26px, 4.6vw, 42px);
+      font-weight: 600;
+      letter-spacing: -0.035em;
+      line-height: 1.3;
+      max-width: 18em;
+      margin: 0 auto;
+      text-wrap: balance;
+    }
+    .statement .dim { color: var(--faint); }
+
+    /* Apps */
+    .apps { text-align: center; }
+    .apps .label { margin-bottom: 20px; }
+    .apps-lede {
+      color: var(--muted);
+      max-width: 28em;
+      margin: 0 auto 56px;
+      text-wrap: balance;
+    }
+    .app-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 18px;
+      list-style: none;
+      padding: 0;
+    }
+    .app-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      width: 168px;
+      padding: 30px 20px 26px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.015);
+      text-decoration: none;
+      transition: border-color 0.35s var(--ease), background 0.35s var(--ease), transform 0.35s var(--ease);
+    }
+    a.app-card:hover {
+      border-color: rgba(255, 255, 255, 0.25);
+      background: rgba(255, 255, 255, 0.03);
+      transform: translateY(-3px);
+    }
+    .app-icon {
+      width: 62px;
+      height: 62px;
+      border-radius: 15px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-      -webkit-font-smoothing: antialiased;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.06);
+      filter: grayscale(1);
+      transition: filter 0.45s var(--ease);
     }
-    h1 {
-      margin: 0;
-      font-size: clamp(28px, 7vw, 64px);
-      font-weight: 600;
-      letter-spacing: -0.03em;
+    .app-card:hover .app-icon { filter: grayscale(0); }
+    .app-icon img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .app-icon.pad img { width: 60%; height: 60%; object-fit: contain; }
+    .app-icon svg { width: 30px; height: 30px; }
+    .app-name {
+      font-size: 15.5px;
+      font-weight: 550;
+      letter-spacing: -0.01em;
+      color: var(--fg);
+    }
+    .app-tag {
+      font-size: 12.5px;
+      color: var(--faint);
+      margin-top: -12px;
+    }
+
+    /* ---------- Final CTA ---------- */
+    .cta {
+      text-align: center;
+      padding: 150px 0 160px;
+      position: relative;
+    }
+    .cta::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 50% 110%, rgba(255,255,255,0.06), transparent 65%);
+      pointer-events: none;
+    }
+    .cta h2 {
+      font-size: clamp(34px, 6vw, 58px);
+      font-weight: 650;
+      letter-spacing: -0.04em;
+      line-height: 1.08;
+      max-width: 13em;
+      margin: 0 auto 22px;
+      text-wrap: balance;
+    }
+    .cta p {
+      color: var(--muted);
+      max-width: 26em;
+      margin: 0 auto 44px;
+      text-wrap: balance;
+    }
+
+    /* ---------- Footer ---------- */
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 36px 0 44px;
+    }
+    footer .wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      font-size: 13.5px;
+      color: var(--faint);
+    }
+    footer nav { display: flex; gap: 24px; }
+    footer a {
+      color: var(--faint);
+      text-decoration: none;
+      transition: color 0.25s var(--ease);
+    }
+    footer a:hover { color: var(--fg); }
+
+    @media (max-width: 720px) {
+      .services-grid { grid-template-columns: 1fr; max-width: 480px; }
+      .card { padding: 36px 30px 40px; }
+    }
+    @media (max-width: 640px) {
+      section { padding: 84px 0; }
+      .hero { min-height: 88vh; }
+      .app-card { width: 148px; padding: 26px 16px 22px; }
+      footer .wrap { justify-content: center; text-align: center; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .rise { animation: none; }
+      .btn, .btn .arrow, .card, .app-card, .app-icon { transition: none; }
     }
   </style>
 </head>
 <body>
-  <h1>Adaba Studio</h1>
+
+  <header>
+    <div class="wrap">
+      <a class="mark" href="/">Adaba Studio</a>
+      <a class="nav-cta" href="#call">Book a call</a>
+    </div>
+  </header>
+
+  <main>
+
+    <div class="hero">
+      <div class="wrap" style="display:flex; flex-direction:column; align-items:center;">
+        <p class="eyebrow rise d1">Adaba Studio — iOS product studio</p>
+        <h1 class="rise d2">From idea to App&nbsp;Store in&nbsp;weeks.</h1>
+        <p class="hero-sub rise d3">iOS MVPs and product advisory for founders and small teams. You work directly with the people who&nbsp;ship.</p>
+        <div class="hero-actions rise d4">
+          <a class="btn" href="#call">Book a 20-minute call <span class="arrow">&rarr;</span></a>
+          <span class="btn-note">Free. If we're not the fit, you'll know in five minutes.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="logos reveal">
+      <div class="wrap">
+        <span class="label">Built &amp; shipped at</span>
+        <ul class="logo-row">
+          <li class="lg-bereal">BeReal.</li>
+          <li class="lg-lydia">Lydia</li>
+          <li class="lg-papernest">papernest</li>
+          <li class="lg-deloitte">Deloitte.</li>
+          <li class="lg-alstom">ALSTOM</li>
+        </ul>
+      </div>
+    </div>
+
+    <section class="services hairline">
+      <div class="wrap">
+        <span class="label reveal">What we do</span>
+        <div class="services-grid">
+          <div class="card reveal">
+            <span class="num">01</span>
+            <h2>iOS MVP,<br>built &amp; shipped</h2>
+            <p>Tight scope, native build, live on the App&nbsp;Store in weeks. A v1 real users can pay for.</p>
+          </div>
+          <div class="card reveal">
+            <span class="num">02</span>
+            <h2>Product<br>advisory</h2>
+            <p>What to build, what to cut, what to ignore. Straight answers from people who've shipped at scale.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="statement hairline">
+      <div class="wrap reveal">
+        <p><span class="dim">Most MVPs are still in meetings at week&nbsp;twelve.</span><br>
+        Yours will be&nbsp;live.</p>
+      </div>
+    </section>
+
+    <section class="apps hairline">
+      <div class="wrap">
+        <span class="label reveal">Our own products</span>
+        <p class="apps-lede reveal">We ship our own apps too. Same playbook we run for&nbsp;you.</p>
+        <ul class="app-row reveal">
+          <li>
+            <div class="app-card">
+              <span class="app-icon pad"><img src="/assets/trutle.png" alt="Trutle app logo" loading="lazy"></span>
+              <span class="app-name">Trutle</span>
+            </div>
+          </li>
+          <li>
+            <a class="app-card" href="/marca/">
+              <span class="app-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                </svg>
+              </span>
+              <span class="app-name">Marca</span>
+            </a>
+          </li>
+          <li>
+            <a class="app-card" href="/again/">
+              <span class="app-icon"><img src="/assets/again.png" alt="Again app icon" loading="lazy"></span>
+              <span class="app-name">Again</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="call" class="cta hairline">
+      <div class="wrap reveal">
+        <span class="label" style="margin-bottom:28px;">Next step</span>
+        <h2>Bring the idea.<br>Leave with a&nbsp;plan.</h2>
+        <p>Twenty minutes: scope, timeline, price.</p>
+        <a class="btn" href="mailto:adabastudio@gmail.com?subject=20-minute%20call">Book a 20-minute call <span class="arrow">&rarr;</span></a>
+        <span class="btn-note">We reply within one business day.</span>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>&copy; 2026 Adaba Studio</span>
+      <nav>
+        <a href="https://www.linkedin.com/in/adrienguinard" target="_blank" rel="noopener">LinkedIn&nbsp;&#8599;</a>
+        <a href="mailto:adabastudio@gmail.com">adabastudio@gmail.com</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      document.documentElement.classList.add("js");
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            e.target.classList.add("in");
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+      document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
+    })();
+  </script>
+
 </body>
 </html>
