@@ -317,7 +317,6 @@
     .app-card:hover .app-icon { filter: grayscale(0); }
     .app-icon img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .app-icon.pad img { width: 60%; height: 60%; object-fit: contain; }
-    .app-icon svg { width: 30px; height: 30px; }
     .app-name {
       font-size: 15.5px;
       font-weight: 550;
@@ -404,7 +403,7 @@
   <header>
     <div class="wrap">
       <a class="mark" href="/">Adaba Studio</a>
-      <a class="nav-cta" href="#call">Book a call</a>
+      <a class="nav-cta" href="mailto:adabastudio@gmail.com?subject=20-minute%20call">Book a call</a>
     </div>
   </header>
 
@@ -416,7 +415,7 @@
         <h1 class="rise d2">From idea to App&nbsp;Store in&nbsp;weeks.</h1>
         <p class="hero-sub rise d3">iOS MVPs and product advisory for founders and small teams. You work directly with the people who&nbsp;ship.</p>
         <div class="hero-actions rise d4">
-          <a class="btn" href="#call">Book a 20-minute call <span class="arrow">&rarr;</span></a>
+          <a class="btn" href="mailto:adabastudio@gmail.com?subject=20-minute%20call">Book a 20-minute call <span class="arrow">&rarr;</span></a>
           <span class="btn-note">Free. If we're not the fit, you'll know in five minutes.</span>
         </div>
       </div>
@@ -466,19 +465,14 @@
         <p class="apps-lede reveal">We ship our own apps too. Same playbook we run for&nbsp;you.</p>
         <ul class="app-row reveal">
           <li>
-            <div class="app-card">
-              <span class="app-icon pad"><img src="/assets/trutle.png" alt="Trutle app logo" loading="lazy"></span>
-              <span class="app-name">Trutle</span>
-            </div>
+            <a class="app-card" href="https://trutle.com" target="_blank" rel="noopener">
+              <span class="app-icon pad"><img src="/assets/trutle.png" alt="trutle app logo" loading="lazy"></span>
+              <span class="app-name">trutle</span>
+            </a>
           </li>
           <li>
             <a class="app-card" href="/marca/">
-              <span class="app-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
-                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
-                </svg>
-              </span>
+              <span class="app-icon"><img src="/assets/marca.png" alt="Marca app icon" loading="lazy"></span>
               <span class="app-name">Marca</span>
             </a>
           </li>
