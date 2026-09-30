@@ -131,7 +131,8 @@
     .ring .ring-num { font-size: 22px; font-weight: 700; line-height: 1; }
     .ring .ring-unit { font-size: 9px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
     .streak-line { display: flex; align-items: center; gap: 7px; font-weight: 600; font-size: 15px; }
-    .streak-line .flame { color: var(--streak); }
+    .streak-line .flame { color: var(--streak); display: inline-flex; }
+    .streak-line .flame svg { width: 15px; height: 15px; }
     .ring-sub { font-size: 13px; color: var(--muted); margin-top: 2px; }
 
     .book-card {
@@ -268,7 +269,7 @@
               </div>
             </div>
             <div>
-              <div class="streak-line"><span class="flame">&#128293;</span> 12 day streak</div>
+              <div class="streak-line"><span class="flame"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 23c4.4 0 8-3.5 8-7.8 0-1.9-.7-3.6-1.8-5.3-.3 1.2-1.1 2-2 2 .9-2.6.2-5.6-2.4-8-.7 2-2 3.2-3.6 4.5C8 9.7 7 11.3 7 13c0 .6.1 1.2.3 1.7-.9-.2-1.6-1-2-2.2C4.4 13.6 4 15 4 15.2 4 19.5 7.6 23 12 23z"/></svg></span> 12 day streak</div>
               <div class="ring-sub">3 pages to today's goal</div>
             </div>
           </div>
