@@ -30,19 +30,20 @@
 <body>
 <p><a href="./" style="text-decoration:none;color:inherit;display:inline-flex;align-items:center;gap:.5rem;font-weight:600"><img src="icon.png" alt="" width="28" height="28" style="border-radius:7px">Cindy</a></p>
 <h1>Privacy Policy</h1>
-<p class="updated">Cindy · Last updated 17 October 2026</p>
+<p class="updated">Cindy · Last updated 27 October 2026</p>
 
 <p>
-  Cindy is a workout app made by Adaba Studio. It is designed to work entirely
-  on your iPhone. We run no server for it, and we don't collect, store, or share
-  your personal data. This policy explains what the app keeps, and where.
+  Cindy is a workout app made by Adaba Studio. It is designed to work on your
+  iPhone: your profile and workout history stay on your device. The only thing
+  that leaves it is anonymous usage statistics, described below, which help us
+  understand how the app is used and improve it. This policy explains what the
+  app keeps, what it sends, and where.
 </p>
 
 <h2>What we do not do</h2>
 <ul>
   <li>We do not ask for an account, an email address, or a password.</li>
-  <li>We do not use analytics, advertising, or tracking SDKs, and we serve no
-    ads.</li>
+  <li>We do not use advertising or tracking SDKs, and we serve no ads.</li>
   <li>We do not track you across other apps or websites. Cindy shows no App
     Tracking Transparency prompt because it has nothing to ask for.</li>
   <li>We do not access your camera, location, contacts, or health data.</li>
@@ -62,6 +63,28 @@
   deleting the app deletes it for good.
 </p>
 
+<h2>Anonymous usage statistics</h2>
+<p>
+  Starting with version 1.0.1, Cindy sends anonymous usage events to
+  <a href="https://posthog.com">PostHog</a>, an analytics service, hosted in the
+  European Union (Frankfurt). For example: an onboarding step was viewed, a
+  workout was started, finished or discarded, with its round count and
+  duration, or the share sheet was opened.
+</p>
+<p>
+  Along with these events, PostHog receives technical details about the app and
+  device: app version, iOS version, device model, language, whether reminders
+  are allowed, and a random identifier generated on your device. That identifier
+  isn't linked to your name, email, Apple ID, or any other app, and we never try
+  to find out who you are. Your IP address isn't stored.
+</p>
+<p>
+  We use this data only to measure and improve Cindy. It is never sold, used
+  for advertising, or used to track you across other apps and websites. It is
+  kept for at most one year, then deleted. Deleting the app deletes the random
+  identifier, after which new events can't be connected to the old ones.
+</p>
+
 <h2>Notifications</h2>
 <p>
   If you allow notifications, Cindy schedules reminders about your weekly goal
@@ -74,12 +97,14 @@
 <p>
   After a workout you can share an image of your result. It is created on your
   device and only goes where you send it, through the standard iOS share sheet.
-  We never see it.
+  We never see it: the usage statistics only note that the share sheet was
+  opened.
 </p>
 
 <h2>Children</h2>
 <p>
-  Cindy doesn't collect any information from anyone, including children.
+  Cindy doesn't knowingly collect personal information from anyone, including
+  children. The anonymous usage statistics above don't identify anyone.
 </p>
 
 <h2>Changes</h2>
